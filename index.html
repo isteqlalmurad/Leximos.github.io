@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leximos - Empowering Careers through Language Learning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #3a0ca3;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #3a0ca3;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            text-align: center;
+            padding: 180px 0 120px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #3a0ca3;
+            font-weight: 600;
+        }
+
+        .vision-mission {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .vision,
+        .mission {
+            flex-basis: 48%;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .vision:hover,
+        .mission:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-item-content {
+            padding: 20px;
+        }
+
+        .portfolio-item h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #3498db;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #3498db;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #3498db;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #3498db;
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #3498db;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #3498db transparent transparent;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
+
+        .reviews {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .review {
+            flex-basis: 30%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .review:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .review-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #4361ee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .review-icon i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .review-author {
+            font-weight: 600;
+        }
+
+        .review-rating {
+            color: #f72585;
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+
+        .review-content {
+            font-style: italic;
+            color: #555;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .team-member {
+            flex-basis: 30%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #4361ee;
+        }
+
+        footer {
+            background-color: #3a0ca3;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #f72585;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .cta-button:hover {
+            background-color: #b5179e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Leximos <img src="/Users/murad/functionCalling/LandingPage/leximos-logo.png" alt="Leximos Logo"
+                        style="height: 70px; vertical-align: middle;">
+                </div>
+                <ul>
+
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Empowering Careers By <br> Bridging Language Barriers</h1>
+                <p>Leximos is and innovative vocational English language learning platform designed for
+                    professionals facing language barriers in their careers. Whether you're a skilled migrant, an
+                    international professional, or someone looking to enhance your job prospects.</p>
+                <a href="#reviews" class="cta-button">Free Trial</a>
+            </div>
+        </section>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Us</h2>
+                <div class="vision-mission">
+                    <div class="vision">
+                        <h4>Our Vision</h4>
+                        </h3> Empowering Global Talent Bridging Language Barriers for Professional Success.</h3>
+                        <p>
+
+                            Our vision at Leximos is to transform the professional landscape for non-native English
+                            speakers by providing innovative, tailored language learning solutions. We aspire to create
+                            a world where language is no longer a barrier to career success and societal contribution,
+                            enabling every professional to unlock their full potential in the global workforce.</p>
+                    </div>
+                    <div class="mission">
+                        <h4>Our Mission</h4>
+                        </h3> Careers through Targeted Language Mastery.</h3>
+                        <p>
+                            At Leximos, our mission is to empower migrants and non-native English speakers by enhancing
+                            their vocational language skills, tailored specifically to their professional needs.
+                            developing personalized learning pathways that enable our users to excel in job
+                            interviews, integrate into workplace cultures, and advance their careers in English-speaking
+                            countries. Through a combination of cutting-edge technology and
+                            community support, to promote growth and professional success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="section">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="/Users/murad/functionCalling/LandingPage/vocational.jpg"
+                            alt="Screenshot of Leximos web application interface" width="300" height="200">
+                        <div class="portfolio-item-content">
+                            <h3>Vocational Language Learning</h3>
+                            <ul>
+                                <li>Customized lessons focusing on job-specific vocabulary and communication skills.
+                                </li>
+                                <li>Real-life scenarios and simulations to practice language skills in practical
+                                    contexts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Users/murad/functionCalling/LandingPage/clerk.webp"
+                            alt="Screenshot of Leximos web application interface" width="300" height="200">
+                        <div class="portfolio-item-content">
+                            <h3>Skill Validation and Enhancement</h3>
+                            <ul>
+                                <li>Assessment tools to evaluate existing language skills and identify areas for
+                                    improvement.</li>
+                                <li>Targeted language exercises to enhance specific skills relevant to users'
+                                    professional roles.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Users/murad/functionCalling/LandingPage/volantering.jpg"
+                            alt="Screenshot of Leximos web application interface" width="300" height="200">
+                        <div class="portfolio-item-content">
+                            <h3>Confidence Building Activities</h3>
+                            <ul>
+                                <li>Volunteering opportunities to practice language skills in real-world settings.</li>
+                                <li>Community engagement programs and support groups for peer-to-peer practice and
+                                    encouragement.</li>
+                                <li>Mentorship and gamification features to foster confidence and engagement in language
+                                    learning.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Users/murad/functionCalling/LandingPage/mobile.webp"
+                            alt="Mockup of Leximos mobile app on smartphone" width="300" height="200">
+                        <div class="portfolio-item-content">
+                            <h3>Mobile Apps</h3>
+                            <p>Extending our reach with iOS and Android apps for on-the-go learning, with a web version
+                                planned.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/Users/murad/functionCalling/LandingPage/idk.webp"
+                            alt="Visualization of AI-powered language assessment" width="300" height="200">
+                        <div class="portfolio-item-content">
+                            <h3>Language Assessment</h3>
+                            <p>Our powerful language proficiency evaluation system uses advanced algorithms to meet
+                                users at their English level.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="section">
+            <div class="container">
+                <h2>Our Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2019: Inception</h3>
+                            <p>Leximos began as an offline academy in Delhi, India, through our founder's collaboration
+                                with UNHCR, helping refugees gain job-specific language skills.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2023: First Prototype</h3>
+                            <p>Developed the initial web-based application as part of our founder's master's thesis and
+                                conducted user testing with over 20 international participants.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2023: University Recognition</h3>
+                            <p>Won "Best Overall Project" award from University of Dundee for real-world impact
+                                applicaton.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2023: Enterprise Challenge Win</h3>
+                            <p>Leximos secured first position amongst 21 teams in the Enterprise Challenge, earning
+                                £1000 in funding to
+                                advance development.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2023: Venture Competition Success:</h3>
+                            <p>Leximos triumphed in the Venture Competition, amongst best UK startups securing £2000 in
+                                funding to further
+                                develop its innovative language learning concept.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2024: Leximos 2.0</h3>
+                            <p>Began development of second iteration of leximos an advanced cloud-based version with
+                                enhanced features and mobile apps.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2024: Present Status</h3>
+                            <p>Leximos is incubating with the Elevator Accelerator program and collaborating closely
+                                withsocial organizations, employers and customers to refine its
+                                product offerings.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="reviews" class="section">
+            <div class="container">
+                <h2>Customer Reviews</h2>
+                <div class="reviews">
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-user-nurse"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">Omid S.</div>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "Hello,
+                            Well done, hope you make it more and more practical and efficient by adding more data;
+                            however, I highly recommend you to make sure that your app responses properly to some
+                            question. for instance, sometimes there is no question but app needs an answer.
+                            Best wishes!
+                            "
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">Mohd A Omarzada.</div>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "All the sentences are useful but the font of the sentence are not suitable for reading for
+                            a long
+                            time, and based on different gender of users, you can use two colors such as blue and pink
+                            or
+                            Green and white because I think the pink color is not attractive for all users. Also, the
+                            arrangement of sentences on the page is simple. you can use different fonts or colors.
+                            Good Luck!"
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">Sepideh Moradi.</div>
+                                <div class="review-rating">★★★★☆</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "Overall experience was excellent, and i was astonished with the intellect of this APP!"
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">Pratik Khandekar.</div>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "The business English course on Leximos was exactly what I needed to advance in my finance
+                            career. The negotiation role-play exercises were particularly helpful. I recently got
+                            promoted to senior analyst!"
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">Parisa M.</div>
+                                <div class="review-rating">★★★★☆</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "I struggled with technical English. Leximos' automotive vocabulary and in context learning
+                            was great!"
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <div class="review-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <div class="review-author">elham T.</div>
+                                <div class="review-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            "The User Interface could be improved, making the website easier to navigate through."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="team" class="section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="team">
+                    <div class="team-member">
+                        <img src="/Users/murad/functionCalling/LandingPage/Murad.png"
+                            alt="Portrait of Sarah Johnson, Founder and CEO">
+                        <h3>Sayed Murad</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/Users/murad/functionCalling/LandingPage/parisa.jpg"
+                            alt="Portrait of Michael Chen, CTO">
+                        <h3>Parisa Tomeh</h3>
+                        <p>Co-founder & COO</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="/Users/murad/functionCalling/LandingPage/dany.png"
+                            alt="Portrait of danyl, Head of development">
+                        <h3>Danyal</h3>
+                        <p>Software Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-form">
+                    <form action="/submit-form" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .contact-form {
+                background: white;
+                /* Matches other card-like designs */
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                /* Consistent with other shadows */
+                border-radius: 10px;
+                /* Consistency in rounding */
+            }
+
+            .contact-form form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .contact-form .form-group {
+                margin-bottom: 15px;
+                /* Spacing between form elements */
+            }
+
+            .contact-form .form-group label {
+                font-weight: 600;
+                /* Making labels bold */
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: 100%;
+                /* Full width */
+                padding: 8px;
+                border: 1px solid #ccc;
+                /* Subtle borders */
+                border-radius: 4px;
+                /* Rounded edges */
+            }
+
+            .contact-form button.submit-btn {
+                background-color: #4361ee;
+                /* Theme color for buttons */
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .contact-form button.submit-btn:hover {
+                background-color: #3a0ca3;
+                /* Darker shade on hover */
+            }
+        </style>
+
+
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Leximos. Empowering careers through language learning.</p>
+
+        </div>
+
+        <div class="container" style="text-align: left; font-size: 0.6em;">
+
+            <p>Address: Entrepreneurship Center, University of Dundee, DD1 5EN<br>
+                Contact: isteqlalmurad@gmail.com<br>
+                Mobile: 07496 997274 </p>
+            Leximos is a registered trademark of Leximos Language Learning sole traders. All rights reserved.</p>
+
+        </div>
+
+
+
+    </footer>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+    </script>
+</body>
+
+</html>
